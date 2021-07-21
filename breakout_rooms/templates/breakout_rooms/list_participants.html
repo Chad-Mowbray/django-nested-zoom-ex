@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  {% if participants.0.breakout_room.topic %}
+  <h1>List Participants {{ participants.0.breakout_room.topic }}</h1>
+  {% else %}
+  <h2>This room is empty</h2>
+
+  {% endif %}
+  <a href="{% url 'new_room' %}">New Participant</a>
+
+
+  {% for p in participants %}
+  <h3>{{ p.name }}</h3>
+  <p>From Room {{ p.breakout_room.topic }}</p>
+  <a href="{% url 'participant_detail' room_id=p.breakout_room.id  participant_id=p.id %}">Detail</a>
+
+  {% endfor %}
+  
+</body>
+</html>
